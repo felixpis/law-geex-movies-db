@@ -1,24 +1,29 @@
-import logo from './logo.svg';
-import './App.css';
+import { BrowserRouter, Route, Switch } from "react-router-dom";
+import { RecoilRoot } from "recoil";
+import styled from "styled-components";
+import MovieDetails from "./pages/MovieDetails";
+import Movies from "./pages/Movies";
+
+const Root = styled.div`
+  margin: 20px;
+`;
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Root>
+      <RecoilRoot>
+        <BrowserRouter>
+          <Switch>
+            <Route exact path="/">
+              <Movies />
+            </Route>
+            <Route path="/:id">
+              <MovieDetails />
+            </Route>
+          </Switch>
+        </BrowserRouter>
+      </RecoilRoot>
+    </Root>
   );
 }
 
